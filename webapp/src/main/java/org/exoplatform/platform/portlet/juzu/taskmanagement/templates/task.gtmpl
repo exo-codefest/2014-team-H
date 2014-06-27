@@ -29,9 +29,9 @@
       jsManager.require("SHARED/jQueryTaskManagement", "taskmanagement").addScripts("taskmanagement.initTaskManagement();");
 %>
 
-<div style="display:none;" class="uiBox uiTaskManagement" id="content">
+<div  class="uiBox uiTaskManagement" id="content">
 <h6 class="title center">&{projects.label}</h6>
-<div style="display:none;" class="projectList" id="taskManagement">
+<div  class="projectList" id="taskManagement">
    <ul id='projects'></ul>
 </div>
 

@@ -27,7 +27,7 @@
     <artifactId>addons-parent-pom</artifactId>
     <groupId>org.exoplatform.addons</groupId>
     <version>4</version>
-    <relativePath />
+    <relativePath/>
   </parent>
   <groupId>org.exoplatform.addons.codefest.team_h</groupId>
   <artifactId>team-h-addon</artifactId>

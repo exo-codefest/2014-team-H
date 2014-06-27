@@ -25,12 +25,12 @@ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
 <modelVersion>4.0.0</modelVersion>
 <parent>
     <artifactId>team-h-addon</artifactId>
-    <groupId>org.exoplatform.platform</groupId>
+    <groupId>org.exoplatform.addons.codefest.team_h</groupId>
     <version>1.0.x-SNAPSHOT</version>
 </parent>
 <artifactId>team-h-addon-webapp</artifactId>
 <packaging>jar</packaging>
-<name>eXo Platform - Code Fest TAsk Management</name>
+<name>Team H addon - webapp</name>
 <dependencies>
     <dependency>
         <groupId>javax.portlet</groupId>
@@ -260,7 +260,7 @@ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
                 <dependency>
                     <groupId>org.exoplatform.commons</groupId>
                     <artifactId>commons-juzu</artifactId>
-                    <version>${org.exoplatform.commons.version}</version>
+                    <version>4.1-M2</version>
                 </dependency>
             </dependencies>
             <configuration>
