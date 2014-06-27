@@ -33,6 +33,10 @@
     <key>org.exoplatform.service.taskManagement.service.ProjectService</key>
     <type>org.exoplatform.service.taskManagement.service.ProjectService</type>
   </component>
+    <component>
+        <key>org.exoplatform.service.taskManagement.service.TaskService</key>
+        <type>org.exoplatform.service.taskManagement.service.TaskService</type>
+    </component>
 
   <external-component-plugins>
     <target-component>org.exoplatform.services.jcr.RepositoryService</target-component>

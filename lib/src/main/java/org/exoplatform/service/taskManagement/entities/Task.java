@@ -17,7 +17,6 @@
 package org.exoplatform.service.taskManagement.entities;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by The eXo Platform SAS
@@ -33,6 +32,13 @@ public class Task {
   private String description;
    private Date dueDate;
   private  String affected;
+
+    public Task(int projectId, String nameTask, java.util.Date dueDate, String description) {
+        this.projectId = projectId;
+        this.nameTask = nameTask;
+        this.dueDate = dueDate;
+        this.description = description;
+    }
     
   public int getId() {
     return idTask;
