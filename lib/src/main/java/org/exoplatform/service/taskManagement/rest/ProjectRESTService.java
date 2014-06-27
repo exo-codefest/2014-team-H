@@ -18,8 +18,11 @@
  */
 package org.exoplatform.service.taskManagement.rest;
 
+import org.exoplatform.commons.utils.ListAccess;
 import org.exoplatform.service.taskManagement.entities.Project;
 import org.exoplatform.service.taskManagement.service.ProjectService;
+import org.exoplatform.services.organization.OrganizationService;
+import org.exoplatform.services.organization.User;
 import org.exoplatform.services.rest.resource.ResourceContainer;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.GET;
@@ -65,23 +68,49 @@ import org.json.JSONObject;
  *          exo@exoplatform.com
  * Jun 26, 2014
  */
-@Path("/taskManagement")
+@Path("/taskmanagement")
 public class ProjectRESTService implements ResourceContainer
 {
    private ProjectService projectService;
+   private OrganizationService organizationService;
 
+   public ProjectRESTService(OrganizationService organizationService,  ProjectService projectService) {
 
-   public ProjectRESTService(ProjectService projectService) {
-      this.projectService = new ProjectService();
+      this.organizationService = organizationService;
+      this.projectService=projectService;
    }
 
-   @POST
+   @GET
    @Path("/addproject")
    @Produces(MediaType.TEXT_HTML)
    @RolesAllowed("users")
    public Response createProject(@PathParam("name") String name, @PathParam("lead") String lead) {
       Project proj =projectService.addProject(name,lead);
       return Response.ok(proj.toString()).build();
+   }
+
+   @GET
+   @Path("/addproject1")
+   @Produces(MediaType.TEXT_HTML)
+   @RolesAllowed("users")
+   public Response createProjectTest() {
+      Project proj =projectService.addProject("project","lead");
+      return Response.ok(proj.toString()).build();
+   }
+
+   void getUser()
+   {
+      try
+      {
+         ListAccess<User> listUsers = organizationService.getUserHandler().findAllUsers();
+         for (User user : listUsers.load(0, listUsers.getSize())) {
+            System.out.println(user.getFullName());
+         }
+      }
+      catch (Exception e)
+      {
+         e.printStackTrace();
+      }
    }
 
 
