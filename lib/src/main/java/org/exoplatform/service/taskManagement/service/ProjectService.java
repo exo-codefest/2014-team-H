@@ -18,25 +18,19 @@
  */
 package org.exoplatform.service.taskManagement.service;
 
-import org.exoplatform.container.ExoContainer;
-import org.exoplatform.container.ExoContainerContext;
-import org.exoplatform.container.PortalContainer;
-import org.exoplatform.container.RootContainer;
 import org.exoplatform.service.taskManagement.entities.Project;
 import org.exoplatform.services.jcr.RepositoryService;
 import org.exoplatform.services.jcr.core.ManageableRepository;
-import org.exoplatform.services.jcr.ext.app.SessionProviderService;
 import org.exoplatform.services.jcr.ext.common.SessionProvider;
 import org.exoplatform.services.jcr.ext.hierarchy.NodeHierarchyCreator;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
-import javax.jcr.PathNotFoundException;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.jcr.query.Query;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -115,7 +109,18 @@ private String taskRootNode="TaskManagement";
          return list;
    }
 
+    public Node getProjectByName(String projectName) throws RepositoryException {
 
+        Node root = getTaskRootNode();
+        String statement = null;
+         try {
+           Node node = root.getNode(projectName);
+           return node;
+         } catch (Exception e) {
+              e.printStackTrace();
+         }
+        return null;
+    }
 
 
    protected Node getTaskRootNode() throws RepositoryException {
