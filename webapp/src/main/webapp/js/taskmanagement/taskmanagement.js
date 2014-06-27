@@ -86,7 +86,7 @@
 
 
 
-            $('.jz').on("click", '.projectValidationButton', function(){
+            $('.jz').on("click", '.addproject', function(){
                 $('#taskManagement').jzLoad(
                     "TaskManagementController.addproject()");
             });
@@ -105,6 +105,8 @@
                 $('#taskManagement').jzLoad(
                     "TaskManagementController.index()");
             });
+
+
         }
     };
 })($);

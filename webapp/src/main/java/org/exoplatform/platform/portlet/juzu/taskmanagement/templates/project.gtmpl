@@ -35,7 +35,7 @@
    <ul id='projects'></ul>
 </div>
 <div>
-			 <a class="addLink actionIcon pull-right " data-placement="left" rel="tooltip"   data-original-title="&{addproject.Label}"></a>
+			 <a class="addproject actionIcon pull-right " data-placement="left" rel="tooltip"   data-original-title="&{addproject.Label}">Add project</a>
 </div>
 
 
