@@ -29,121 +29,75 @@ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
     <version>1.0.x-SNAPSHOT</version>
 </parent>
 <artifactId>team-h-addon-webapp</artifactId>
-<packaging>jar</packaging>
-<name>Team H addon - webapp</name>
-<dependencies>
-    <dependency>
-        <groupId>javax.portlet</groupId>
-        <artifactId>portlet-api</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.exoplatform.calendar</groupId>
-        <artifactId>calendar-service</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.exoplatform.calendar</groupId>
-        <artifactId>calendar-webservice</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.exoplatform.commons</groupId>
-        <artifactId>commons-api</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.exoplatform.commons</groupId>
-        <artifactId>commons-component-common</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.exoplatform.commons</groupId>
-        <artifactId>commons-component-product</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.exoplatform.commons</groupId>
-        <artifactId>commons-juzu</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.exoplatform.ecms</groupId>
-        <artifactId>ecms-core-services</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.exoplatform.forum</groupId>
-        <artifactId>forum-forum-service</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.exoplatform.kernel</groupId>
-        <artifactId>exo.kernel.container</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.exoplatform.social</groupId>
-        <artifactId>social-component-common</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.exoplatform.social</groupId>
-        <artifactId>social-component-core</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.gatein.portal</groupId>
-        <artifactId>exo.portal.component.web.api</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.gatein.shindig</groupId>
-        <artifactId>shindig-social-api</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.juzu</groupId>
-        <artifactId>juzu-bom-core</artifactId>
-        <exclusions>
-            <exclusion>
-                <artifactId>weld-core</artifactId>
-                <groupId>org.jboss.weld</groupId>
-            </exclusion>
-            <exclusion>
-                <artifactId>spring-core</artifactId>
-                <groupId>org.springframework</groupId>
-            </exclusion>
-            <exclusion>
-                <artifactId>spring-beans</artifactId>
-                <groupId>org.springframework</groupId>
-            </exclusion>
-            <exclusion>
-                <artifactId>spring-web</artifactId>
-                <groupId>org.springframework</groupId>
-            </exclusion>
-            <exclusion>
-                <artifactId>slf4j-simple</artifactId>
-                <groupId>org.slf4j</groupId>
-            </exclusion>
-            <exclusion>
-                <artifactId>slf4j-ext</artifactId>
-                <groupId>org.slf4j</groupId>
-            </exclusion>
-            <exclusion>
-                <artifactId>commons-logging</artifactId>
-                <groupId>commons-logging</groupId>
-            </exclusion>
-        </exclusions>
-    </dependency>
-    <dependency>
-        <groupId>org.juzu</groupId>
-        <artifactId>juzu-plugins-less</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.juzu</groupId>
-        <artifactId>juzu-plugins-portlet</artifactId>
-    </dependency>
-    <!-- We want to be sure to use the right version in the dependency plugin but it's not required in the package -->
-    <dependency>
-        <groupId>org.exoplatform.platform-ui</groupId>
-        <artifactId>platform-ui-web-eXoResources</artifactId>
-        <type>war</type>
-        <scope>provided</scope>
-    </dependency>
-    <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-simple</artifactId>
-        <scope>test</scope>
-    </dependency>
-</dependencies>
-<build>
+<packaging>war</packaging>
+    <name>Codefest 2014 - Team H Addon - Webapp</name>
+    <description>Codefest 2014 - Team H Addon - A portlet or any webapp</description>
+    <dependencies>
+
+        <!-- Application dependencies-->
+        <dependency>
+            <groupId>org.juzu</groupId>
+            <artifactId>juzu-core</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.juzu</groupId>
+            <artifactId>juzu-bom-core</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.juzu</groupId>
+            <artifactId>juzu-plugins-portlet</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.juzu</groupId>
+            <artifactId>juzu-plugins-less</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- eXo Platform  Dependencies -->
+        <dependency>
+            <groupId>org.exoplatform.kernel</groupId>
+            <artifactId>exo.kernel.container</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.exoplatform.core</groupId>
+            <artifactId>exo.core.component.organization.api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.gatein.portal</groupId>
+            <artifactId>exo.portal.component.portal</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.gatein.portal</groupId>
+            <artifactId>exo.portal.webui.portal</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.exoplatform.ecms</groupId>
+            <artifactId>ecms-core-services</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.exoplatform.commons</groupId>
+            <artifactId>commons-juzu</artifactId>
+        </dependency>
+
+        <!-- Other Dependencies -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
+
+
+    </dependencies>
+    <build>
     <finalName>taskmanagement-portlet</finalName>
     <plugins>
         <plugin>
@@ -260,12 +214,15 @@ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
                 <dependency>
                     <groupId>org.exoplatform.commons</groupId>
                     <artifactId>commons-juzu</artifactId>
-                    <version>4.1-M2</version>
+                    <version>${org.exoplatform.commons.version}</version>
                 </dependency>
             </dependencies>
             <configuration>
                 <attach>true</attach>
             </configuration>
+        </plugin>
+        <plugin>
+            <artifactId>maven-war-plugin</artifactId>
         </plugin>
     </plugins>
 </build>

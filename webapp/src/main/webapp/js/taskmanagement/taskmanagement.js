@@ -34,7 +34,7 @@
                         var link = "";
 
 
-                        link += "<li class='clearfix' id='"+item.projectId+"'>"
+                        link += "<li class='project clearfix' id='"+item.projectId+"'>"
 
                         link += "<div style='display:none;' class='projectAction' ><a class='ignore' href='#' onclick='return false'><i class='uiIconClose'></i></a></div>";
 
@@ -86,9 +86,25 @@
 
 
 
+            $('.jz').on("click", '.projectValidationButton', function(){
+                $('#taskManagement').jzLoad(
+                    "TaskManagementController.addproject()");
+            });
 
+            $('.jz').on("click", '.project', function(){
+                $('#taskManagement').jzLoad(
+                    "TaskManagementController.clickproject()");
+            });
 
+            $('.jz').on("click", '.addtask', function(){
+                $('#taskManagement').jzLoad(
+                    "TaskManagementController.addtask()");
+            });
 
+            $('.jz').on("click", '.CancelButton', function(){
+                $('#taskManagement').jzLoad(
+                    "TaskManagementController.index()");
+            });
         }
     };
 })($);
