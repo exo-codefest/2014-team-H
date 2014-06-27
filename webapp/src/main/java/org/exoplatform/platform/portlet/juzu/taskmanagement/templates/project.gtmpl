@@ -1,0 +1,59 @@
+<%
+      /**
+      * Copyright ( C ) 2012 eXo Platform SAS.
+      *
+      * This is free software; you can redistribute it and/or modify it
+      * under the terms of the GNU Lesser General Public License as
+      * published by the Free Software Foundation; either version 2.1 of
+      * the License, or (at your option) any later version.
+      *
+      * This software is distributed in the hope that it will be useful,
+      * but WITHOUT ANY WARRANTY; without even the implied warranty of
+      * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+      * Lesser General Public License for more details.
+      *
+      * You should have received a copy of the GNU Lesser General Public
+      * License along with this software; if not, write to the Free
+      * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+      * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+      */
+
+      %>
+<%
+      import org.exoplatform.portal.webui.util.Util;
+      import org.exoplatform.webui.application.portlet.PortletRequestContext;
+      import org.exoplatform.web.application.JavascriptManager;
+
+      def pcontext = Util.getPortalRequestContext();
+      def jsManager = pcontext.getJavascriptManager();
+      jsManager.require("SHARED/jQueryTaskManagement", "taskmanagement").addScripts("taskmanagement.initTaskManagement();");
+%>
+
+<div  class="uiBox uiTaskManagement" id="content">
+<h6 class="title center">&{projects.label}</h6>
+<div  class="projectList" id="taskManagement">
+   <ul id='projects'></ul>
+</div>
+<div>
+			 <a class="addproject actionIcon pull-right " data-placement="left" rel="tooltip"   data-original-title="&{addproject.Label}">Add project</a>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="bundle" data-addproject="&{addproject.Label}" data-addtask="&{addtask.Label}" data-remove="&{remove.label}"  data-edit="&{edit.Label}"></div>
