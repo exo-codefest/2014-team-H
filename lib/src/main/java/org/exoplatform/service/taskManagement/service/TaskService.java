@@ -18,21 +18,16 @@
  */
 package org.exoplatform.service.taskManagement.service;
 
-import org.exoplatform.container.ExoContainer;
-import org.exoplatform.container.PortalContainer;
-import org.exoplatform.container.RootContainer;
 import org.exoplatform.service.taskManagement.entities.Task;
 import org.exoplatform.services.jcr.RepositoryService;
-import org.exoplatform.services.jcr.core.ManageableRepository;
-import org.exoplatform.services.jcr.ext.app.SessionProviderService;
-import org.exoplatform.services.jcr.ext.common.SessionProvider;
 import org.exoplatform.services.jcr.ext.hierarchy.NodeHierarchyCreator;
-
-import javax.jcr.Node;
-import javax.jcr.PathNotFoundException;
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
+import org.exoplatform.services.log.ExoLogger;
+import org.exoplatform.services.log.Log;
 import java.util.Date;
+import javax.jcr.Node;
+import javax.jcr.NodeIterator;
+import javax.jcr.RepositoryException;
+import javax.jcr.query.Query;
 
 /**
  * @author <a href="mailto:foo@bar.org">Foo Bar</a>
@@ -42,78 +37,101 @@ public class TaskService
 {
    private NodeHierarchyCreator nodeCreator;
    private String taskRootNode;
-    private RepositoryService repositoryService;
-    private ProjectService projectService;
+   private RepositoryService repositoryService;
+   private ProjectService projectService;
+   private static final Log LOG = ExoLogger.getLogger("taskManagement.service.TaskService");
 
-    public TaskService(RepositoryService repositoryService, ProjectService projectService){
-        this.repositoryService = repositoryService;
-        this.projectService = projectService;
-    }
+   public TaskService(RepositoryService repositoryService, ProjectService projectService)
+   {
+      this.repositoryService = repositoryService;
+      this.projectService = projectService;
+   }
 
-   public Task addTask(String projectName, String name , String affected, String desc, Date dueDate){
-       Task task = null;
-      try {
-          Node pRoot = projectService.getProjectByName(projectName);
-          long projectId = pRoot.getProperty("idProject").getLong();
+   public Task addTask(int id, String name, String affected, String desc, Date dueDate)
+   {
+      Task task = null;
+      try
+      {
+         Node pRoot = projectService.getProjectNodeById(id);
+         Node tasks = pRoot.hasNode("tasksList") ?
+            pRoot.getNode("tasksList") :
+            pRoot.addNode("tasksList", "exo:tasksList");
+         long projectId = pRoot.getProperty("idProject").getLong();
          long newId = System.currentTimeMillis();
-         Node pNode = pRoot.addNode(newId + "", "exo:task");
+         Node pNode = tasks.addNode(newId + "", "exo:task");
          pNode.setProperty("idTask", newId);
          pNode.setProperty("nameTask", name);
          pNode.setProperty("description", desc);
          pNode.setProperty("affected", affected);
          pNode.setProperty("dueDate", dueDate.toString());
-         pRoot.save();
-          task = new Task((int) projectId, name, dueDate, desc);
-      } catch (Exception e) {
-
+         pNode.save();
+         task = new Task((int)projectId, name, dueDate, desc);
       }
-       return task;
+      catch (Exception e)
+      {
+         LOG.error(e);
+      }
+      return task;
    }
 
-   private Node getProjectRootNode() {
-      SessionProvider sessionProvider = getSystemSessionProvider();
+   public Task getTaskById(int taskId)
+   {
+      Node tNode = getTaskNodeById(taskId);
+
+      Task task = new Task();
+      try
+      {
+         Node project = tNode.getParent().getParent();
+         task.setProjectId((int)project.getProperty("idProject").getLong());
+         task.setId((int)tNode.getProperty("idTask").getLong());
+         task.setDescription(tNode.getProperty("idTask").getString());
+         task.setName(tNode.getProperty("idTask").getString());
+         //task.setDueDate(n.getProperty("idTask").getDate());
+         task.setAffected(tNode.getProperty("idTask").getString());
+      }
+      catch (RepositoryException e)
+      {
+         LOG.error(e);
+      }
+      return task;
+   }
+
+   public boolean removeTask(int idTask) {
       try {
-         return nodeCreator.getPublicApplicationNode(sessionProvider).getNode(taskRootNode);
-      } catch (PathNotFoundException e) {
-         try {
-            Node appNode = nodeCreator.getPublicApplicationNode(sessionProvider);
-            Node ret = appNode.addNode(taskRootNode);
-            appNode.save();
-            return ret;
-         } catch(Exception ex) {
-            return null;
-         }
+         Node pNode = projectService.getTaskRootNode();
+         Node tNode = this.getTaskNodeById(idTask);
+         tNode.remove();
+         pNode.save();
       } catch (Exception e) {
-         return null;
+         LOG.error(e);
+         return false;
       }
+      return true;
    }
 
-   public static SessionProvider getSystemSessionProvider() {
-      String containerName = PortalContainer.getCurrentPortalContainerName();
-      ExoContainer container = RootContainer.getInstance().getPortalContainer(containerName);
-      SessionProviderService sessionProviderService = (SessionProviderService)container.getComponentInstanceOfType(SessionProviderService.class);
-      return sessionProviderService.getSystemSessionProvider(null);
+   private Node getTaskNodeById(int taskId)
+   {
+
+      Node pRoot = null;
+      try
+      {
+         pRoot = projectService.getTaskRootNode();
+         String statement = "SELECT * FROM exo:task WHERE jcr:path LIKE '" +
+            pRoot.getPath() + "/%' AND idTask ='" + taskId + "'";
+
+         Query query = pRoot.getSession().getWorkspace().getQueryManager().createQuery(statement, Query.SQL);
+         for (NodeIterator iter = query.execute().getNodes(); iter.hasNext(); )
+         {
+            Node t = iter.nextNode();
+            return t;
+         }
+      }
+      catch (RepositoryException e)
+      {
+         LOG.error(e);
+      }
+
+      return null;
+
    }
-    protected Node getTaskRootNode() throws RepositoryException {
-        SessionProvider sessionProvider = null;
-        Node node;
-        try {
-            sessionProvider = SessionProvider.createSystemProvider();
-            ManageableRepository currentRepo = repositoryService.getCurrentRepository();
-            Session session = sessionProvider.getSession(currentRepo.getConfiguration().getDefaultWorkspaceName(), currentRepo);
-            Node rootNode = session.getRootNode();
-            if (!rootNode.hasNode(taskRootNode)) {
-                node = rootNode.addNode(taskRootNode);
-                rootNode.save();
-            }
-            else
-            {
-                node=rootNode.getNode(taskRootNode);
-            }
-
-        } finally {
-        }
-        return node;
-    }
-
 }

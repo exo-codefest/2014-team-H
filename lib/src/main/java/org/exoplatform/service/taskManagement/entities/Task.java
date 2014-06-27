@@ -33,6 +33,10 @@ public class Task {
    private Date dueDate;
   private  String affected;
 
+   public Task()
+   {
+
+   }
     public Task(int projectId, String nameTask, java.util.Date dueDate, String description) {
         this.projectId = projectId;
         this.nameTask = nameTask;
@@ -70,10 +74,10 @@ public class Task {
    public void setDueDate(Date dueDate) {
       this.dueDate = dueDate;
    }
-  public String getMembers() {
+  public String getAffected() {
     return affected;
   }
-  public void setMembers(String affected) {
+  public void setAffected(String affected) {
     this.affected = affected;
   }
 

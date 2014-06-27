@@ -36,7 +36,7 @@
     <childNodeDefinitions>
       <childNodeDefinition name="tasksList" defaultPrimaryType="" autoCreated="false" mandatory="false" onParentVersion="COPY" protected="false" sameNameSiblings="false">
         <requiredPrimaryTypes>
-          <requiredPrimaryType>exo:task</requiredPrimaryType>
+          <requiredPrimaryType>exo:tasksList</requiredPrimaryType>
         </requiredPrimaryTypes>
       </childNodeDefinition>
     </childNodeDefinitions>

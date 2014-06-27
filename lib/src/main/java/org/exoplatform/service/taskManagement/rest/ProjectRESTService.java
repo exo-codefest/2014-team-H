@@ -21,6 +21,8 @@ package org.exoplatform.service.taskManagement.rest;
 import org.exoplatform.commons.utils.ListAccess;
 import org.exoplatform.service.taskManagement.entities.Project;
 import org.exoplatform.service.taskManagement.service.ProjectService;
+import org.exoplatform.services.log.ExoLogger;
+import org.exoplatform.services.log.Log;
 import org.exoplatform.services.organization.OrganizationService;
 import org.exoplatform.services.organization.User;
 import org.exoplatform.services.rest.resource.ResourceContainer;
@@ -73,6 +75,7 @@ public class ProjectRESTService implements ResourceContainer
 {
    private ProjectService projectService;
    private OrganizationService organizationService;
+   private static final Log LOG = ExoLogger.getLogger("taskManagement.service.ProjectRESTService");
 
    public ProjectRESTService(OrganizationService organizationService,  ProjectService projectService) {
 
@@ -98,19 +101,32 @@ public class ProjectRESTService implements ResourceContainer
       return Response.ok(proj.toString()).build();
    }
 
-   void getUser()
+   @GET
+   @Path("/getalluser")
+   @Produces("application/json")
+   @RolesAllowed("users")
+   public Response getUser()
    {
+      JSONArray jsonArray = new JSONArray();
+      JSONObject jsonGlobal = new JSONObject();
       try
       {
          ListAccess<User> listUsers = organizationService.getUserHandler().findAllUsers();
          for (User user : listUsers.load(0, listUsers.getSize())) {
-            System.out.println(user.getFullName());
+             System.out.println(user.getFullName());
+            JSONObject json = new JSONObject();
+            json.put("username",user.getFullName());
+            jsonArray.put(json);
          }
+         jsonGlobal.put("totalNbUsers",  listUsers.getSize());
+         jsonGlobal.put("projects", jsonArray);
+
       }
       catch (Exception e)
       {
-         e.printStackTrace();
+         LOG.error(e);
       }
+      return Response.ok(jsonGlobal.toString(), MediaType.APPLICATION_JSON).build();
    }
 
 
@@ -137,7 +153,7 @@ public class ProjectRESTService implements ResourceContainer
       }
       catch (JSONException e)
       {
-         e.printStackTrace();
+         LOG.error(e);
       }
 
       return Response.ok(jsonGlobal.toString(), MediaType.APPLICATION_JSON).build();
