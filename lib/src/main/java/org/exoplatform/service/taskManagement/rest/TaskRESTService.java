@@ -58,11 +58,11 @@ public class TaskRESTService implements ResourceContainer
    @Path("/addTask")
    @Produces(MediaType.TEXT_HTML)
    @RolesAllowed("users")
-   public Response createTask(@QueryParam("projectId") int projectId, @QueryParam("taskName") String taskName
-      , @QueryParam("taskName") String description)
+   public Response createTask(@QueryParam("projectId") long projectId, @QueryParam("taskName") String taskName
+      , @QueryParam("desc") String desc)
    {
 
-      Task t = taskService.addTask(projectId, taskName, description);
+      Task t = taskService.addTask(projectId, taskName, desc);
       return Response.ok(t.toString()).build();
    }
 

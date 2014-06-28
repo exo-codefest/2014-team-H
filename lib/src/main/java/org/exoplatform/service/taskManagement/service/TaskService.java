@@ -47,27 +47,35 @@ public class TaskService
       this.projectService = projectService;
    }
 
-   public Task addTask(long projectId, String name,String desc)
+   public Task addTask(long projectId, String name, String desc)
    {
-     return addTask(projectId,name,null,desc,null);
+      return addTask(projectId, name, null, desc, null);
    }
+
    public Task addTask(long projectId, String name, String affected, String desc, Date dueDate)
    {
       Task task = null;
       try
       {
          Node pRoot = projectService.getProjectNodeById(projectId);
-         Node tasks = pRoot.hasNode("tasksList") ?
-            pRoot.getNode("tasksList") :
-            pRoot.addNode("tasksList", "exo:tasksList");
+         Node tasks = null;
+         if (pRoot.hasNode("tasksList"))
+         {
+            tasks=pRoot.getNode("tasksList");
+         }
+         else
+         {
+            tasks=pRoot.addNode("tasksList", "exo:tasksList");
+            pRoot.save();
+         }
          long newId = System.currentTimeMillis();
-         Node pNode = tasks.addNode("Task"+newId + "", "exo:task");
+         Node pNode = tasks.addNode("Task" + newId + "", "exo:task");
          pNode.setProperty("idTask", newId);
          pNode.setProperty("nameTask", name);
          pNode.setProperty("description", desc);
          pNode.setProperty("affected", affected);
-         pNode.setProperty("dueDate", dueDate.toString());
-         pNode.save();
+         //pNode.setProperty("dueDate", dueDate.toString());
+         pRoot.save();
          task = new Task((int)projectId, name, dueDate, desc);
       }
       catch (Exception e)
@@ -99,13 +107,17 @@ public class TaskService
       return task;
    }
 
-   public boolean removeTask(int idTask) {
-      try {
+   public boolean removeTask(int idTask)
+   {
+      try
+      {
          Node pNode = projectService.getTaskRootNode();
          Node tNode = this.getTaskNodeById(idTask);
          tNode.remove();
          pNode.save();
-      } catch (Exception e) {
+      }
+      catch (Exception e)
+      {
          LOG.error(e);
          return false;
       }

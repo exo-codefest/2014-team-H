@@ -27,13 +27,18 @@ import org.exoplatform.services.organization.OrganizationService;
 import org.exoplatform.services.organization.User;
 import org.exoplatform.services.rest.resource.ResourceContainer;
 import javax.annotation.security.RolesAllowed;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
+import javax.ws.rs.core.UriInfo;
 
 /**
  * @author <a href="mailto:foo@bar.org">Foo Bar</a>
@@ -84,24 +89,15 @@ public class ProjectRESTService implements ResourceContainer
       this.projectService = projectService;
    }
 
-   @POST
-   @Path("/project/{name}")
+   @GET
+   @Path("/addproject")
    @Produces(MediaType.TEXT_HTML)
    @RolesAllowed("users")
-   public Response createProject(@PathParam("name") String name, @PathParam("lead") String lead)
+   public Response createProject(@Context SecurityContext sc,
+                                 @Context UriInfo uriInfo,@QueryParam("name") String name, @QueryParam("lead") String lead)
    {
       Project proj = projectService.addProject(name, lead);
-      return Response.ok(proj.toString()).build();
-   }
-
-   @GET
-   @Path("/addproject1")
-   @Produces(MediaType.TEXT_HTML)
-   @RolesAllowed("users")
-   public Response createProjectTest()
-   {
-      Project proj = projectService.addProject("project", "lead");
-      return Response.ok(proj.toString()).build();
+      return Response.ok(proj.toString(),MediaType.APPLICATION_JSON).build();
    }
 
    @GET
