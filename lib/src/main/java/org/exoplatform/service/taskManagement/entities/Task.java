@@ -26,8 +26,8 @@ import java.util.Date;
  */
 public class Task {
 
-  private int idTask;
-  private int projectId;
+  private long idTask;
+  private long projectId;
   private String nameTask;
   private String description;
    private Date dueDate;
@@ -44,16 +44,16 @@ public class Task {
         this.description = description;
     }
     
-  public int getId() {
+  public long getId() {
     return idTask;
   }
-  public void setId(int idTask) {
+  public void setId(long idTask) {
     this.idTask = idTask;
   }
-  public int getProjectId() {
+  public long getProjectId() {
     return projectId;
   }
-  public void setProjectId(int projectId) {
+  public void setProjectId(long projectId) {
     this.projectId = projectId;
   }
   public String getName() {

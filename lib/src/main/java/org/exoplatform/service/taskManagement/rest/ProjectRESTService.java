@@ -70,25 +70,27 @@ import org.json.JSONObject;
  *          exo@exoplatform.com
  * Jun 26, 2014
  */
-@Path("/taskmanagement")
+@Path("/taskmanagement/project")
 public class ProjectRESTService implements ResourceContainer
 {
    private ProjectService projectService;
    private OrganizationService organizationService;
    private static final Log LOG = ExoLogger.getLogger("taskManagement.service.ProjectRESTService");
 
-   public ProjectRESTService(OrganizationService organizationService,  ProjectService projectService) {
+   public ProjectRESTService(OrganizationService organizationService, ProjectService projectService)
+   {
 
       this.organizationService = organizationService;
-      this.projectService=projectService;
+      this.projectService = projectService;
    }
 
-   @GET
-   @Path("/addproject")
+   @POST
+   @Path("/project/{name}")
    @Produces(MediaType.TEXT_HTML)
    @RolesAllowed("users")
-   public Response createProject(@PathParam("name") String name, @PathParam("lead") String lead) {
-      Project proj =projectService.addProject(name,lead);
+   public Response createProject(@PathParam("name") String name, @PathParam("lead") String lead)
+   {
+      Project proj = projectService.addProject(name, lead);
       return Response.ok(proj.toString()).build();
    }
 
@@ -96,8 +98,9 @@ public class ProjectRESTService implements ResourceContainer
    @Path("/addproject1")
    @Produces(MediaType.TEXT_HTML)
    @RolesAllowed("users")
-   public Response createProjectTest() {
-      Project proj =projectService.addProject("project","lead");
+   public Response createProjectTest()
+   {
+      Project proj = projectService.addProject("project", "lead");
       return Response.ok(proj.toString()).build();
    }
 
@@ -112,13 +115,14 @@ public class ProjectRESTService implements ResourceContainer
       try
       {
          ListAccess<User> listUsers = organizationService.getUserHandler().findAllUsers();
-         for (User user : listUsers.load(0, listUsers.getSize())) {
-             System.out.println(user.getFullName());
+         for (User user : listUsers.load(0, listUsers.getSize()))
+         {
+            System.out.println(user.getFullName());
             JSONObject json = new JSONObject();
-            json.put("username",user.getFullName());
+            json.put("username", user.getFullName());
             jsonArray.put(json);
          }
-         jsonGlobal.put("totalNbUsers",  listUsers.getSize());
+         jsonGlobal.put("totalNbUsers", listUsers.getSize());
          jsonGlobal.put("projects", jsonArray);
 
       }
@@ -134,21 +138,23 @@ public class ProjectRESTService implements ResourceContainer
    @Path("/getallprojects")
    @Produces("application/json")
    @RolesAllowed("users")
-   public Response getAllProjects() {
+   public Response getAllProjects()
+   {
 
       JSONArray jsonArray = new JSONArray();
       JSONObject jsonGlobal = new JSONObject();
 
       try
       {
-         for (Project project : projectService.getAllProject()) {
+         for (Project project : projectService.getAllProject())
+         {
             JSONObject json = new JSONObject();
-            json.put("projectId",project.getId());
-            json.put("nameProject",project.getName());
-            json.put("teamLead",project.getLead());
+            json.put("projectId", project.getId());
+            json.put("nameProject", project.getName());
+            json.put("teamLead", project.getLead());
             jsonArray.put(json);
          }
-         jsonGlobal.put("totalNbProjects",  projectService.getAllProject().size());
+         jsonGlobal.put("totalNbProjects", projectService.getAllProject().size());
          jsonGlobal.put("projects", jsonArray);
       }
       catch (JSONException e)
@@ -159,8 +165,6 @@ public class ProjectRESTService implements ResourceContainer
       return Response.ok(jsonGlobal.toString(), MediaType.APPLICATION_JSON).build();
 
    }
-
-
 
 
 }

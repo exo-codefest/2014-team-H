@@ -100,9 +100,9 @@ public class ProjectService
          for (NodeIterator iter = query.execute().getNodes(); iter.hasNext(); )
          {
             Node n = iter.nextNode();
-            int id = (int)n.getProperty("idProject").getLong();
-            String name = n.getProperty("nameProject").getString();
-            String lead = n.getProperty("teamLead").getString();
+            long id = n.hasProperty("idProject")? n.getProperty("idProject").getLong():0;
+            String name = n.hasProperty("nameProject")?n.getProperty("nameProject").getString():"";
+            String lead = n.hasProperty("teamLead")? n.getProperty("teamLead").getString():"";
             Project pr = new Project(id, name, lead);
             list.add(pr);
          }
@@ -115,23 +115,23 @@ public class ProjectService
       return list;
    }
 
-   public List<Task> getTasks(Project project)
+   public List<Task> getTasks(long projectId)
    {
 
       List<Task> list = new ArrayList<Task>();
-      Node pNode = getProjectNodeById(project.getId());
+      Node pNode = getProjectNodeById(projectId);
       try
       {
          for (NodeIterator iter = pNode.getNode("tasksList").getNodes(); iter.hasNext(); )
          {
             Task task = new Task();
             Node n = iter.nextNode();
-            task.setProjectId((int)pNode.getProperty("idProject").getLong());
-            task.setId((int)n.getProperty("idTask").getLong());
-            task.setDescription(n.getProperty("idTask").getString());
-            task.setName(n.getProperty("idTask").getString());
+            if(pNode.hasProperty("idProject"))task.setProjectId(pNode.getProperty("idProject").getLong());
+            if(pNode.hasProperty("idTask"))task.setId(n.getProperty("idTask").getLong());
+            if(pNode.hasProperty("description"))task.setDescription(n.getProperty("description").getString());
+            if(pNode.hasProperty("nameTask"))task.setName(n.getProperty("nameTask").getString());
             //task.setDueDate(n.getProperty("idTask").getDate());
-            task.setAffected(n.getProperty("idTask").getString());
+            if(pNode.hasProperty("affected"))task.setAffected(n.getProperty("affected").getString());
             list.add(task);
          }
       }
@@ -204,7 +204,7 @@ public class ProjectService
       return node;
    }
 
-   public Node getProjectNodeById(int id)
+   public Node getProjectNodeById(long id)
    {
       Node pRoot = null;
       try

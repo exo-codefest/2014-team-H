@@ -29,6 +29,12 @@
     <type>org.exoplatform.service.taskManagement.rest.ProjectRESTService</type>
   </component>
 
+   <component>
+    <key>org.exoplatform.service.taskManagement.rest.TaskRESTService</key>
+    <type>org.exoplatform.service.taskManagement.rest.TaskRESTService</type>
+  </component>
+
+
   <component>
     <key>org.exoplatform.service.taskManagement.service.ProjectService</key>
     <type>org.exoplatform.service.taskManagement.service.ProjectService</type>

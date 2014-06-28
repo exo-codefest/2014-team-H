@@ -47,18 +47,21 @@ public class TaskService
       this.projectService = projectService;
    }
 
-   public Task addTask(int id, String name, String affected, String desc, Date dueDate)
+   public Task addTask(long projectId, String name,String desc)
+   {
+     return addTask(projectId,name,null,desc,null);
+   }
+   public Task addTask(long projectId, String name, String affected, String desc, Date dueDate)
    {
       Task task = null;
       try
       {
-         Node pRoot = projectService.getProjectNodeById(id);
+         Node pRoot = projectService.getProjectNodeById(projectId);
          Node tasks = pRoot.hasNode("tasksList") ?
             pRoot.getNode("tasksList") :
             pRoot.addNode("tasksList", "exo:tasksList");
-         long projectId = pRoot.getProperty("idProject").getLong();
          long newId = System.currentTimeMillis();
-         Node pNode = tasks.addNode(newId + "", "exo:task");
+         Node pNode = tasks.addNode("Task"+newId + "", "exo:task");
          pNode.setProperty("idTask", newId);
          pNode.setProperty("nameTask", name);
          pNode.setProperty("description", desc);
@@ -82,8 +85,8 @@ public class TaskService
       try
       {
          Node project = tNode.getParent().getParent();
-         task.setProjectId((int)project.getProperty("idProject").getLong());
-         task.setId((int)tNode.getProperty("idTask").getLong());
+         task.setProjectId(project.getProperty("idProject").getLong());
+         task.setId(tNode.getProperty("idTask").getLong());
          task.setDescription(tNode.getProperty("idTask").getString());
          task.setName(tNode.getProperty("idTask").getString());
          //task.setDueDate(n.getProperty("idTask").getDate());
@@ -109,7 +112,7 @@ public class TaskService
       return true;
    }
 
-   private Node getTaskNodeById(int taskId)
+   private Node getTaskNodeById(long taskId)
    {
 
       Node pRoot = null;

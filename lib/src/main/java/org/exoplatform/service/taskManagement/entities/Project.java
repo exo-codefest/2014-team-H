@@ -27,11 +27,11 @@ import com.google.inject.internal.util.$Strings;
  */
 public class Project {
 
-  private int idProject;
+  private long idProject;
   private String nameProject;
   private String teamLead;
 
-   public Project(int idProject,String nameProject, String teamLead )
+   public Project(long idProject,String nameProject, String teamLead )
    {
       this.idProject = idProject;
       this.nameProject=nameProject;
@@ -39,10 +39,10 @@ public class Project {
    }
 
 
-   public int getId() {
+   public long getId() {
     return idProject;
   }
-  public void setId(int idProject) {
+  public void setId(long idProject) {
     this.idProject = idProject;
   }
   public String getName() {
