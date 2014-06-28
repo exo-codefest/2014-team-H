@@ -55,7 +55,7 @@ public class TaskRESTService implements ResourceContainer
    }
 
    @GET
-   @Path("/addTask")
+   @Path("/addtask")
    @Produces(MediaType.TEXT_HTML)
    @RolesAllowed("users")
    public Response createTask(@QueryParam("projectId") long projectId, @QueryParam("taskName") String taskName
