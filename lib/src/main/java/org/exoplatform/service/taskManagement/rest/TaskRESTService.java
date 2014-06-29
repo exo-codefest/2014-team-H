@@ -83,7 +83,7 @@ public class TaskRESTService implements ResourceContainer
             JSONObject json = new JSONObject();
             json.put("idProject", task.getProjectId());
             json.put("idTask", task.getId());
-            json.put("nameProject", task.getName());
+            json.put("nameTasks", task.getName());
             json.put("description", task.getDescription());
             json.put("affected", task.getAffected());
             json.put("dueDate", task.getDueDate());
