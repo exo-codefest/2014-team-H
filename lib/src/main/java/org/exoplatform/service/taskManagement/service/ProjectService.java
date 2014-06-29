@@ -127,11 +127,11 @@ public class ProjectService
             Task task = new Task();
             Node n = iter.nextNode();
             if(pNode.hasProperty("idProject"))task.setProjectId(pNode.getProperty("idProject").getLong());
-            if(pNode.hasProperty("idTask"))task.setId(n.getProperty("idTask").getLong());
-            if(pNode.hasProperty("description"))task.setDescription(n.getProperty("description").getString());
-            if(pNode.hasProperty("nameTask"))task.setName(n.getProperty("nameTask").getString());
+            if(n.hasProperty("idTask"))task.setId(n.getProperty("idTask").getLong());
+            if(n.hasProperty("description"))task.setDescription(n.getProperty("description").getString());
+            if(n.hasProperty("nameTask"))task.setName(n.getProperty("nameTask").getString());
             //task.setDueDate(n.getProperty("idTask").getDate());
-            if(pNode.hasProperty("affected"))task.setAffected(n.getProperty("affected").getString());
+            if(n.hasProperty("affected"))task.setAffected(n.getProperty("affected").getString());
             list.add(task);
          }
       }

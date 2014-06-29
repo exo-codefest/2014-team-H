@@ -76,7 +76,7 @@ public class TaskService
          pNode.setProperty("affected", affected);
          //pNode.setProperty("dueDate", dueDate.toString());
          pRoot.save();
-         task = new Task((int)projectId, name, dueDate, desc);
+         task = new Task(projectId, newId ,name, dueDate, desc);
       }
       catch (Exception e)
       {
@@ -95,10 +95,10 @@ public class TaskService
          Node project = tNode.getParent().getParent();
          task.setProjectId(project.getProperty("idProject").getLong());
          task.setId(tNode.getProperty("idTask").getLong());
-         task.setDescription(tNode.getProperty("idTask").getString());
-         task.setName(tNode.getProperty("idTask").getString());
+         task.setDescription(tNode.getProperty("description").getString());
+         task.setName(tNode.getProperty("nameTask").getString());
          //task.setDueDate(n.getProperty("idTask").getDate());
-         task.setAffected(tNode.getProperty("idTask").getString());
+         task.setAffected(tNode.getProperty("affected").getString());
       }
       catch (RepositoryException e)
       {

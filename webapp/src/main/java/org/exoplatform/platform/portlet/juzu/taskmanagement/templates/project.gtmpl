@@ -19,15 +19,7 @@
       */
 
       %>
-<%
-      import org.exoplatform.portal.webui.util.Util;
-      import org.exoplatform.webui.application.portlet.PortletRequestContext;
-      import org.exoplatform.web.application.JavascriptManager;
-
-      def pcontext = Util.getPortalRequestContext();
-      def jsManager = pcontext.getJavascriptManager();
-      jsManager.require("SHARED/jQueryTaskManagement", "taskmanagement").addScripts("taskmanagement.initTaskManagement();");
-%>
+<script type="text/javascript" charset="utf-8" src="taskmanagement-portlet/js/taskmanagement/taskmanagement.js"></script>
 
 <div  class="uiBox uiTaskManagement" id="content">
 <h6 class="title center">&{projects.label}</h6>

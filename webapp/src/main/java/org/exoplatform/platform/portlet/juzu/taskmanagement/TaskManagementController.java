@@ -47,7 +47,7 @@ public class TaskManagementController {
 
     @Ajax
     @Resource
-    public void clickproject() throws Exception {
+    public void clickproject(String projectID) throws Exception {
         listtask.render();
     }
 

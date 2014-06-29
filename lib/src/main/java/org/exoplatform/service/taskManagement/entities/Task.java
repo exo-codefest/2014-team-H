@@ -37,8 +37,9 @@ public class Task {
    {
 
    }
-    public Task(int projectId, String nameTask, java.util.Date dueDate, String description) {
+    public Task(long projectId,  long idTask, String nameTask, java.util.Date dueDate, String description) {
         this.projectId = projectId;
+        this.idTask=idTask;
         this.nameTask = nameTask;
         this.dueDate = dueDate;
         this.description = description;
