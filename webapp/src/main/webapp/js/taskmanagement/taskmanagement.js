@@ -48,8 +48,6 @@ function createProjectTable(){
                         });
 
                         $('.jz').on("click", '.CancelButton', function(){
-                            $('#content').jzLoad(
-                                "TaskManagementController.index()");
                                 alert("not yet implemented");
                         });
 
