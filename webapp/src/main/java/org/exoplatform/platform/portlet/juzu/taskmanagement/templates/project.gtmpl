@@ -18,24 +18,24 @@
 * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 */
 %>
-<link href="/taskmanagement-portlet/skin/css/cupertino/jquery.ui.all.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="/taskmanagement-portlet/js/common/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="/taskmanagement-portlet/js/common/jquery.ui.core.min.js"></script>
-<script type="text/javascript" src="/taskmanagement-portlet/js/common/jquery.ui.widget.min.js"></script>
-<script type="text/javascript" src="/taskmanagement-portlet/js/common/jquery.ui.mouse.min.js"></script>
-<script type="text/javascript" src="/taskmanagement-portlet/js/common/jquery.ui.sortable.min.js"></script>
-<script type="text/javascript" src="/taskmanagement-portlet/js/common/jquery.ui.tabs.min.js"></script>
-<script type="text/javascript" src="/taskmanagement-portlet/js/common/jquery.ui.button.min.js"></script>
-<script type="text/javascript" src="/taskmanagement-portlet/js/common/jquery.ui.accordion.min.js"></script>
-<script type="text/javascript" src="/taskmanagement-portlet/js/common/juzu-ajax-min.js"></script>
-<script type="text/javascript" charset="utf-8" src="/taskmanagement-portlet/js/common/jquery.datatables-1.9.4-custom.js"></script>
-<script type="text/javascript" charset="utf-8" src="/taskmanagement-portlet/js/common/jquery.datatables.customizations-custom.js"></script>
-<script type="text/javascript" charset="utf-8" src="/taskmanagement-portlet/js/common/jquery.datatables.feature.filter-custom.js"></script>
-<script type="text/javascript" charset="utf-8" src="/taskmanagement-portlet/js/common/jquery.jqueryui.datatables.rowreordering-1.0.0-custom.js"></script>
-<script type="text/javascript" charset="utf-8" src="/taskmanagement-portlet/js/common/jquery.datatables.tabletools-2.1.5-min.js"></script>
-<script type="text/javascript" charset="utf-8" src="/taskmanagement-portlet/js/common/jquery.dataTables.columnFilter.js"></script>
-<script type="text/javascript" charset="utf-8" src="/taskmanagement-portlet/js/common/persist.js"></script>
-<script type="text/javascript" charset="utf-8" src="/taskmanagement-portlet/js/taskmanagement/taskmanagement.js"></script>
+<link href="/team-h-addon-webapp/skin/css/cupertino/jquery.ui.all.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/team-h-addon-webapp/js/common/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/team-h-addon-webapp/js/common/jquery.ui.core.min.js"></script>
+<script type="text/javascript" src="/team-h-addon-webapp/js/common/jquery.ui.widget.min.js"></script>
+<script type="text/javascript" src="/team-h-addon-webapp/js/common/jquery.ui.mouse.min.js"></script>
+<script type="text/javascript" src="/team-h-addon-webapp/js/common/jquery.ui.sortable.min.js"></script>
+<script type="text/javascript" src="/team-h-addon-webapp/js/common/jquery.ui.tabs.min.js"></script>
+<script type="text/javascript" src="/team-h-addon-webapp/js/common/jquery.ui.button.min.js"></script>
+<script type="text/javascript" src="/team-h-addon-webapp/js/common/jquery.ui.accordion.min.js"></script>
+<script type="text/javascript" src="/team-h-addon-webapp/js/common/juzu-ajax-min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/team-h-addon-webapp/js/common/jquery.datatables-1.9.4-custom.js"></script>
+<script type="text/javascript" charset="utf-8" src="/team-h-addon-webapp/js/common/jquery.datatables.customizations-custom.js"></script>
+<script type="text/javascript" charset="utf-8" src="/team-h-addon-webapp/js/common/jquery.datatables.feature.filter-custom.js"></script>
+<script type="text/javascript" charset="utf-8" src="/team-h-addon-webapp/js/common/jquery.jqueryui.datatables.rowreordering-1.0.0-custom.js"></script>
+<script type="text/javascript" charset="utf-8" src="/team-h-addon-webapp/js/common/jquery.datatables.tabletools-2.1.5-min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/team-h-addon-webapp/js/common/jquery.dataTables.columnFilter.js"></script>
+<script type="text/javascript" charset="utf-8" src="/team-h-addon-webapp/js/common/persist.js"></script>
+<script type="text/javascript" charset="utf-8" src="/team-h-addon-webapp/js/taskmanagement/taskmanagement.js"></script>
 
 
 <div  class="uiBox uiTaskManagement" id="content">

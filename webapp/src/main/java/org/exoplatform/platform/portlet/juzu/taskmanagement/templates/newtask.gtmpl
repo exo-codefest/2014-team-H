@@ -1,20 +1,20 @@
-<script src="/taskmanagement-portlet/js/common/jquery.js"></script>
-<script src="/taskmanagement-portlet/js/common/bootstrap-transition.js"></script>
-<script src="/taskmanagement-portlet/js/common/bootstrap-alert.js"></script>
-<script src="/taskmanagement-portlet/js/common/bootstrap-modal.js"></script>
-<script src="/taskmanagement-portlet/js/common/bootstrap-dropdown.js"></script>
-<script src="/taskmanagement-portlet/js/common/bootstrap-scrollspy.js"></script>
-<script src="/taskmanagement-portlet/js/common/bootstrap-tab.js"></script>
-<script src="/taskmanagement-portlet/js/common/bootstrap-tooltip.js"></script>
-<script src="/taskmanagement-portlet/js/common/bootstrap-popover.js"></script>
-<script src="/taskmanagement-portlet/js/common/bootstrap-button.js"></script>
-<script src="/taskmanagement-portlet/js/common/bootstrap-collapse.js"></script>
-<script src="/taskmanagement-portlet/js/common/bootstrap-carousel.js"></script>
-<script src="/taskmanagement-portlet/js/common/bootstrap-typeahead.js"></script>
-<script type="text/javascript" charset="utf-8" src="/taskmanagement-portlet/js/common/taskmanagement/taskmanagement.js"></script>
+<script src="/team-h-addon-webapp/js/common/jquery.js"></script>
+<script src="/team-h-addon-webapp/js/common/bootstrap-transition.js"></script>
+<script src="/team-h-addon-webapp/js/common/bootstrap-alert.js"></script>
+<script src="/team-h-addon-webapp/js/common/bootstrap-modal.js"></script>
+<script src="/team-h-addon-webapp/js/common/bootstrap-dropdown.js"></script>
+<script src="/team-h-addon-webapp/js/common/bootstrap-scrollspy.js"></script>
+<script src="/team-h-addon-webapp/js/common/bootstrap-tab.js"></script>
+<script src="/team-h-addon-webapp/js/common/bootstrap-tooltip.js"></script>
+<script src="/team-h-addon-webapp/js/common/bootstrap-popover.js"></script>
+<script src="/team-h-addon-webapp/js/common/bootstrap-button.js"></script>
+<script src="/team-h-addon-webapp/js/common/bootstrap-collapse.js"></script>
+<script src="/team-h-addon-webapp/js/common/bootstrap-carousel.js"></script>
+<script src="/team-h-addon-webapp/js/common/bootstrap-typeahead.js"></script>
+<script type="text/javascript" charset="utf-8" src="/team-h-addon-webapp/js/common/taskmanagement/taskmanagement.js"></script>
 
-<link href="/taskmanagement-portlet/skin/css/bootstrap.css" rel="stylesheet">
-<link href="/taskmanagement-portlet/skin/css/bootstrap-responsive.css" rel="stylesheet">
+<link href="/team-h-addon-webapp/skin/css/bootstrap.css" rel="stylesheet">
+<link href="/team-h-addon-webapp/skin/css/bootstrap-responsive.css" rel="stylesheet">
 
 <div  class="uiBox uiTaskManagement" id="content">
     <h6 class="title center">&{tasks.label}</h6>
