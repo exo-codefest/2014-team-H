@@ -3,8 +3,8 @@ var store = new Persist.Store('My Data Store');
 
 function createProjectTable(){
    $.getJSON('/rest/taskmanagement/project/getallprojects', function(list) {
-          if (list.projects.length <0){
-                             $(".projectList").html("<div>No projects</div>");
+          if (list.projects.length <1){
+                             $(".projectList").html("<div style='text-align: center;'>No projects</div>");
 
                          }else{
 
@@ -15,9 +15,9 @@ function createProjectTable(){
 
                                  link += "<li class='project clearfix' style='margin-left=10%;' id='"+project.projectId+"'>"
 
-                                 link += "<div class='detail' > <div class='name'> <a href='#' onclick='return false'>"+project.nameProject+"</a> </div>";
+                                 link += "<div class='detail' > <div class='name'> <a style='margin-left=10%;' href='#' onclick='return false'>"+project.nameProject+"</a> </div>";
 
-                                 link += "<div class='peopleConnection'>"+project.teamLead+"  </div></li>";
+                                 link += "<div class='peopleConnection' style='margin-left=10%;'>Project Lead : "+project.teamLead+"  </div></li>";
 
                                  $("#projects").append(link);
  });
@@ -50,6 +50,7 @@ function createProjectTable(){
                         $('.jz').on("click", '.CancelButton', function(){
                             $('#content').jzLoad(
                                 "TaskManagementController.index()");
+                                alert("not yet implemented");
                         });
 
 }

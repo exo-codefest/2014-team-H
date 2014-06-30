@@ -2,8 +2,8 @@
 
 function createTaskTable(projectId){
    $.getJSON('/rest/taskmanagement/task/getalltask?projectid='+projectId, function(list) {
-          if (list.tasks.length <0){
-                             $(".taskList").html("<div>No tasks</div>");
+          if (list.tasks.length <1){
+                             $(".taskList").html("<div style='text-align: center;'>** No tasks **</div>");
 
                          }else{
 
@@ -12,11 +12,11 @@ function createTaskTable(projectId){
                                  var link = "";
 
 
-                                 link += "<li class='task clearfix'  style='margin-left=10%;' id='"+task.idTask+"'>"
+                                 link += "<li class='task clearfix'  id='"+task.idTask+"'>"
 
-                                 link += "<div class='detail' > <div class='name'> <a href='#' onclick='return false'>ccccccc</a> </div>";
+                                 link += "<div class='detail' > <div class='name'> <a style='margin-left=10%;' href='#' onclick='return false'>"+task.nameTasks+"</a> </div>";
 
-                                 link += "<div class='peopleConnection'>ddddddd  </div></li>";
+                                 link += "<div class='peopleConnection' style='margin-left=10%;'>Description : "+task.description+"</div></li>";
 
                                  $("#tasks").append(link);
  });
@@ -34,6 +34,7 @@ function createTaskTable(projectId){
              $('.jz').on("click", '.CancelButton', function(){
                                         $('#content2').jzLoad(
                                             "TaskManagementController.index()");
+                                            alert("not yet implemented");
                                                             });
             }
 
