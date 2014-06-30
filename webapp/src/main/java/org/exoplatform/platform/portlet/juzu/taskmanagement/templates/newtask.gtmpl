@@ -1,0 +1,53 @@
+<script src="/taskmanagement-portlet/js/common/jquery.js"></script>
+<script src="/taskmanagement-portlet/js/common/bootstrap-transition.js"></script>
+<script src="/taskmanagement-portlet/js/common/bootstrap-alert.js"></script>
+<script src="/taskmanagement-portlet/js/common/bootstrap-modal.js"></script>
+<script src="/taskmanagement-portlet/js/common/bootstrap-dropdown.js"></script>
+<script src="/taskmanagement-portlet/js/common/bootstrap-scrollspy.js"></script>
+<script src="/taskmanagement-portlet/js/common/bootstrap-tab.js"></script>
+<script src="/taskmanagement-portlet/js/common/bootstrap-tooltip.js"></script>
+<script src="/taskmanagement-portlet/js/common/bootstrap-popover.js"></script>
+<script src="/taskmanagement-portlet/js/common/bootstrap-button.js"></script>
+<script src="/taskmanagement-portlet/js/common/bootstrap-collapse.js"></script>
+<script src="/taskmanagement-portlet/js/common/bootstrap-carousel.js"></script>
+<script src="/taskmanagement-portlet/js/common/bootstrap-typeahead.js"></script>
+<script type="text/javascript" charset="utf-8" src="/taskmanagement-portlet/js/common/taskmanagement/taskmanagement.js"></script>
+
+<link href="/taskmanagement-portlet/skin/css/bootstrap.css" rel="stylesheet">
+<link href="/taskmanagement-portlet/skin/css/bootstrap-responsive.css" rel="stylesheet">
+
+<div  class="uiBox uiTaskManagement" id="content">
+    <h6 class="title center">&{tasks.label}</h6>
+
+    <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">Task-name</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" id="inputEmail3" placeholder="Project-name">
+        </div>
+    </div>
+    <div class="form-group" >
+        <label for="inputEmail3" class="col-sm-2 control-label">Description</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" id="inputEmail4" placeholder="Project-Team-Lead">
+        </div>
+    </div>
+
+
+    <div class="modal-footer">
+        <button  type="button" style="text-align:center;" class="CancelButton">Cancel</button>
+        <button type="button" style="text-align:center;" class="btn btn-default" >Save changes</button>
+    </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

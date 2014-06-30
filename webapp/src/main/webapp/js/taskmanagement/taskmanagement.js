@@ -1,81 +1,26 @@
-(function ($) {
-
-    var addproject;
-    var remove ;
-    var edit;
-    var addtask;
-    $(".bundle").each(function() {
-        addproject = $(this).data("addproject");
-        remove = $(this).data("remove");
-        edit = $(this).data("edit");
-        addtask = $(this).data("addtask");
-    });
-
-    return {
-        initTaskManagement: function() {
-            $.getJSON("taskmanagmentservice", function(list){
-
-                if (list.items.length <0){
-                    $(".projectList").html("<div>No projects</div>");
-
-                }else{
+var store = new Persist.Store('My Data Store');
 
 
+function createProjectTable(){
+   $.getJSON('/rest/taskmanagement/project/getallprojects', function(list) {
+          if (list.projects.length <0){
+                             $(".projectList").html("<div>No projects</div>");
+
+                         }else{
+
+                             $.each(list.projects, function(i, project){
+
+                                 var link = "";
 
 
+                                 link += "<li class='project clearfix' style='margin-left=10%;' id='"+project.projectId+"'>"
 
+                                 link += "<div class='detail' > <div class='name'> <a href='#' onclick='return false'>"+project.nameProject+"</a> </div>";
 
+                                 link += "<div class='peopleConnection'>"+project.teamLead+"  </div></li>";
 
-
-
-
-                    $.each(list.items, function(i, item){
-
-                        var link = "";
-
-
-                        link += "<li class='project clearfix' id='"+item.projectId+"'>"
-
-                        link += "<div style='display:none;' class='projectAction' ><a class='ignore' href='#' onclick='return false'><i class='uiIconClose'></i></a></div>";
-
-                        link += "</div></li>";
-
-                        $("#projects").append(link);
-
-                        $("#"+item.projectId).mouseover(function(){
-                            var $item = $(this);
-                            $item.find(".projectName").addClass("actionAppears");
-                            $item.find(".projectAction").show();
-                        });
-                        $("#"+item.projectId).mouseout(function(){
-                            var $item = $(this);
-                            $item.find(".projectName").removeClass("actionAppears");
-                            $item.find(".projectAction").hide();
-                        });
-
-
-
-                        $("#"+item.projectId+" a.ignore").live("click", function(){
-                            //$.getJSON("/rest/homepage/intranet/people/contacts/ignore/"+item.suggestionId, null);
-                            if($("#projects").children().length == 1) {
-                                $("#project").fadeOut(500, function () {
-                                    $("#"+item.relationId).remove();
-                                    $("#project").hide();
-
-
-
-                                });
-                            }
-                            else {
-                                $("#"+item.projectId).fadeOut(500, function () {
-                                    $("#"+item.projectId).remove();
-                                    $('#projects li:hidden:first').fadeIn(500, function() {});
-
-                                });
-                            }
-                        });
-
-                    });
+                                 $("#projects").append(link);
+ });
                 }
 
 
@@ -83,30 +28,58 @@
 
 
             });
-
-
-
             $('.jz').on("click", '.addproject', function(){
-                $('#taskManagement').jzLoad(
-                    "TaskManagementController.addproject()");
-            });
+                            $('#content').jzLoad(
+                                "TaskManagementController.addproject()");
+                        });
 
-            $('.jz').on("click", '.project', function(){
-                $('#taskManagement').jzLoad(
-                    "TaskManagementController.clickproject()");
-            });
+                        $('.jz').on("click", '.project', function(){
 
-            $('.jz').on("click", '.addtask', function(){
-                $('#taskManagement').jzLoad(
-                    "TaskManagementController.addtask()");
-            });
+                            $('#content').jzLoad(
+                                "TaskManagementController.clickproject()");
+                                
+                                store.set('saved_data', this.id);
 
-            $('.jz').on("click", '.CancelButton', function(){
-                $('#taskManagement').jzLoad(
-                    "TaskManagementController.index()");
-            });
+                        });
 
+                        $('.jz').on("click", '.addtask', function(){
+                            $('#content').jzLoad(
+                                "TaskManagementController.addtask()");
+                        });
 
-        }
-    };
-})($);
+                        $('.jz').on("click", '.CancelButton', function(){
+                            $('#content').jzLoad(
+                                "TaskManagementController.index()");
+                        });
+
+}
+
+$(document).ready(function () {
+$("#content").show();
+$("#taskManagement").show();
+createProjectTable();
+});
+
+var re = /^(.*)\(\)$/;
+$.fn.jz = function() {
+    return this.closest(".jz");
+};
+$.fn.jzURL = function(mid) {
+    return this.
+        jz().
+        children().
+        filter(function() { return $(this).data("method-id") == mid; }).
+        map(function() { return $(this).data("url"); })[0];
+};
+$.fn.jzLoad = function(url, data, complete) {
+    var match = re.exec(url);
+    if (match != null) {
+        var repl = this.jzURL(match[1]);
+        url = repl || url;
+    }
+    if (typeof data === "function") {
+        complete = data;
+        data = null;
+    }
+    return this.load(url, data, complete);
+};
