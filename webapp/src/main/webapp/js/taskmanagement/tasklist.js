@@ -32,8 +32,7 @@ function createTaskTable(projectId){
                                             "TaskManagementController.addtask()");
                                     });
              $('.jz').on("click", '.CancelButton', function(){
-                                        $('#content2').jzLoad(
-                                            "TaskManagementController.index()");
+                                       
                                             alert("not yet implemented");
                                                             });
             }
