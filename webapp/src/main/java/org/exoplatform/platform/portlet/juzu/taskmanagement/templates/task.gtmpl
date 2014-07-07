@@ -43,8 +43,8 @@
     <div  class="taskList" style="overflow:auto;" id="taskManagment">
         <ul id='tasks'></ul>
         <div>
-            <a class="addtask actionIcon pull-right " data-placement="left"  data-original-title="&{addtask.Label}">Add task</a>
-            <a class="CancelButton actionIcon pull-left " data-placement="left"  data-original-title="&{remove.Label}">Close project</a>
+            <a class="addtask actionIcon pull-right " data-placement="left"  data-original-title="&{addtask.Label}">&{add-task.label}</a>
+            <a class="CancelButton actionIcon pull-left " data-placement="left"  data-original-title="&{remove.Label}">&{close-project.label}</a>
         </div>
     </div>
 </div>

@@ -43,7 +43,7 @@
     <div  class="projectList" style="overflow:auto;" id="taskManagement">
         <ul id='projects'></ul>
         <div>
-            <a class="addproject actionIcon pull-right " data-placement="left" rel="tooltip"   data-original-title="&{addproject.Label}">Add project</a>
+            <a class="addproject actionIcon pull-right " data-placement="left" rel="tooltip"   data-original-title="&{addproject.Label}">&{addproject.label}</a>
         </div>
     </div>
 </div>

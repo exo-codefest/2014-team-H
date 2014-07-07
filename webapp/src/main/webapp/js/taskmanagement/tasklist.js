@@ -31,11 +31,12 @@ function createTaskTable(projectId){
                                         $('#content2').jzLoad(
                                             "TaskManagementController.addtask()");
                                     });
-             $('.jz').on("click", '.CancelButton', function(){
-                                       
-                                            alert("not yet implemented");
-                                                            });
+
             }
+            $('.jz').on("click", '.addtassk', function(){
+
+                                                        alert("not yet implemented");
+                                                                        });
 
 
 

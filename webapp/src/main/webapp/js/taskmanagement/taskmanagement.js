@@ -48,12 +48,31 @@ function createProjectTable(){
                         });
 
                         $('.jz').on("click", '.CancelButton', function(){
-                          
+
                                 alert("not yet implemented");
                         });
 
-}
 
+
+
+
+}
+$('.jz').on("click", '.addproj', function(){
+
+                               var projectname = $('#inputEmail5').val();
+                                               // make a POST ajax call
+                                               $.ajax({
+                                                   type: "GET",
+                                                   url: "/rest/private/taskmanagement/project/addproject", // set your URL here
+                                                   data: {
+                                                   name: projectname, // send along this data (can add more data separated by comma)
+                                                   lead: "eXo-Manager"
+                                               },
+
+                                               }).done(function( response ) {
+                                                   alert(projectname);
+                                               });
+                        });
 $(document).ready(function () {
 $("#content").show();
 $("#taskManagement").show();
